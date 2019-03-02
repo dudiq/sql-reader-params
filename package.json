@@ -1,0 +1,19 @@
+{
+  "name": "sql-reader-params",
+  "version": "0.0.1",
+  "main": "./index.js",
+  "description": "",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dudiq/sql-reader-params"
+  },
+  "author": "dudiq",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/dudiq/sql-reader-params/issues"
+  },
+  "homepage": "https://github.com/dudiq/sql-reader-params",
+  "publishConfig": {
+    "tag": "latest"
+  }
+}
