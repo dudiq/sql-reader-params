@@ -1,0 +1,17 @@
+.git
+
+# Editor directories and files
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+.tern-port
+.editorconfig
+.gitattributes
+.gitignore
+
+# root files
+.DS_Store
+yarn.lock
