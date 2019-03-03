@@ -1,7 +1,8 @@
 {
   "name": "sql-reader-params",
   "version": "0.0.2",
-  "main": "./index.js",
+  "main": "./dist/sql-reader.cjs.js",
+  "module": "./dist/sql-reader.esm.js",
   "description": "",
   "repository": {
     "type": "git",
@@ -15,5 +16,23 @@
   "homepage": "https://github.com/dudiq/sql-reader-params",
   "publishConfig": {
     "tag": "latest"
+  },
+  "files": [
+    "src",
+    "dist"
+  ],
+  "scripts": {
+    "dev": "rollup -c -w",
+    "build:dev": "rollup -c",
+    "build": "rimraf ./dist && npm run build:lib",
+    "build:lib": "NODE_ENV=production rollup -c"
+  },
+  "devDependencies": {
+    "eslint": "^5.15.0",
+    "eslint-config-airbnb-base": "^13.1.0",
+    "eslint-plugin-import": "^2.16.0",
+    "rimraf": "^2.6.3",
+    "rollup": "^1.4.0",
+    "rollup-plugin-commonjs": "^9.2.1"
   }
 }

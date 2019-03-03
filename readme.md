@@ -5,18 +5,18 @@ Just pass params as object and return values and text for use in db client after
 ```
 # content of example.sql
 insert into users (pwd, myFields)
-values ({{pwd}}, {{myFields}})
+values ({{pwd}}, {{myFieldsVar}})
 ```
 then in code
 ```
 const sqlReader = require('sql-reader-params');
-const regUserSql = sqlReader('./example.sql');
+const sqlAsParams = sqlReader('./example.sql');
 
-const values = regUserSql.paramsToValues({
+const values = sqlAsParams.paramsToValues({
     pwd: 'my-hash-pwd',
-    myFields: 10
+    myFieldsVar: 10
 })
-const text = regUserSql.getText();
+const text = sqlAsParams.getText();
 ```
 
 what we have after?
@@ -29,9 +29,9 @@ text ->
 
 ```
 
-then you can use it `value` and `text` in your own database client
+then you can use it `values` and `text` in your own database client
 
-that's all
+that's all folks
 
 licence: MIT, dudiq 2019
 

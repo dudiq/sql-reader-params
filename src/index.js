@@ -1,7 +1,7 @@
-const path = require("path");
-const fs = require("fs");
+const path = require('path');
+const fs = require('fs');
 
-const includesReg = new RegExp("{{(.*?)}}", "ig");
+const includesReg = new RegExp('{{(.*?)}}', 'ig');
 
 function resolveFile(base, file) {
   return path.resolve(base, file);
@@ -34,7 +34,7 @@ function prepareText(fileContent, map) {
   let ret = fileContent;
   for (let key in map) {
     const item = map[key];
-    ret = replaceAll(ret, item.key, "$" + item.index);
+    ret = replaceAll(ret, item.key, '$' + item.index);
   }
 
   return ret;
@@ -74,7 +74,7 @@ function getCaller() {
 
 class SqlReader {
   constructor(filePath) {
-    const fileContent = fs.readFileSync(filePath, "utf8");
+    const fileContent = fs.readFileSync(filePath, 'utf8');
     const data = parseText(fileContent);
     this.map = data.map;
     this.list = data.list;
