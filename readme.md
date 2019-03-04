@@ -9,7 +9,7 @@ values ({{pwd}}, {{myFieldsVar}})
 ```
 then in code
 ```
-const sqlReader = require('sql-reader-params');
+const sqlReader = require('sql-reader-params').default;
 const sqlAsParams = sqlReader('./example.sql');
 
 const values = sqlAsParams.paramsToValues({
