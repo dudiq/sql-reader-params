@@ -1,7 +1,7 @@
 const path = require('path');
 const fs = require('fs');
 
-const includesReg = new RegExp('{{(.*?)}}', 'ig');
+const includesReg = new RegExp(':(\\w*)', 'ig');
 
 function resolveFile(base, file) {
   return path.resolve(base, file);
@@ -12,14 +12,16 @@ function findIncludes(text) {
   let result;
   includesReg.lastIndex = 0;
   let index = 1;
+  // eslint-disable-next-line
   while ((result = includesReg.exec(text)) !== null) {
     const keyFull = result[0];
     const keyOut = result[1];
-    if (keyFull && keyOut) {
+    if (keyFull && keyOut && !map[keyOut]) {
       map[keyOut] = {
         key: keyFull,
-        index
+        index,
       };
+      // eslint-disable-next-line
       index++;
     }
   }
@@ -32,9 +34,9 @@ function replaceAll(text, what, to) {
 
 function prepareText(fileContent, map) {
   let ret = fileContent;
-  for (let key in map) {
+  for (const key in map) {
     const item = map[key];
-    ret = replaceAll(ret, item.key, '$' + item.index);
+    ret = replaceAll(ret, item.key, `$${item.index}`);
   }
 
   return ret;
@@ -42,7 +44,7 @@ function prepareText(fileContent, map) {
 
 function prepareList(map) {
   const ret = [];
-  for (let key in map) {
+  for (const key in map) {
     const item = map[key];
     const index = item.index - 1;
     ret[index] = key;
@@ -57,17 +59,16 @@ function parseText(fileContent) {
   return {
     map,
     list,
-    text
+    text,
   };
 }
 
 function getCaller() {
-  let stack, traceFn;
-  traceFn = Error.prepareStackTrace;
-  Error.prepareStackTrace = function(err, stack) {
+  const traceFn = Error.prepareStackTrace;
+  Error.prepareStackTrace = function (err, stack) {
     return stack;
   };
-  stack = (new Error()).stack;
+  const { stack } = (new Error());
   Error.prepareStackTrace = traceFn;
   return stack[2].getFileName();
 }
@@ -87,7 +88,7 @@ class SqlReader {
 
   paramsToValues(params) {
     const ret = [];
-    const list = this.list;
+    const { list } = this;
     for (let i = 0, l = list.length; i < l; i++) {
       const key = list[i];
       ret.push(params[key]);
@@ -97,7 +98,7 @@ class SqlReader {
 }
 
 
-module.exports = function(fileName) {
+module.exports = function (fileName) {
   const base = path.dirname(getCaller());
   const filePath = resolveFile(base, fileName);
   return new SqlReader(filePath);

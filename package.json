@@ -1,6 +1,6 @@
 {
   "name": "sql-reader-params",
-  "version": "0.0.2",
+  "version": "0.1.1",
   "main": "./dist/sql-reader.cjs.js",
   "module": "./dist/sql-reader.esm.js",
   "description": "",
@@ -28,11 +28,13 @@
     "build:lib": "NODE_ENV=production rollup -c"
   },
   "devDependencies": {
-    "eslint": "^5.15.0",
+    "babel-jest": "^23.6.0",
+    "eslint": "^5.15.3",
     "eslint-config-airbnb-base": "^13.1.0",
     "eslint-plugin-import": "^2.16.0",
+    "jest": "^23.6.0",
     "rimraf": "^2.6.3",
-    "rollup": "^1.4.0",
-    "rollup-plugin-commonjs": "^9.2.1"
+    "rollup": "^1.7.3",
+    "rollup-plugin-commonjs": "^9.2.2"
   }
 }
