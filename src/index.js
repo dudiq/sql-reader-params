@@ -78,8 +78,13 @@ class SqlReader {
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const data = parseText(fileContent);
     this.map = data.map;
+    this.filePath = filePath;
     this.list = data.list;
     this.text = data.text;
+  }
+
+  getId() {
+    return this.filePath;
   }
 
   getText() {
