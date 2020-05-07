@@ -78,13 +78,15 @@ class SqlReader {
     const fileContent = fs.readFileSync(filePath, 'utf8');
     const data = parseText(fileContent);
     this.map = data.map;
-    this.filePath = filePath;
+    const paths = filePath.split(new RegExp('\\\\|/', 'ig'));
+    const fullFileName = paths[paths.length - 1];
+    this.id = `${paths.reduce((res, pathItem) => res + pathItem[0], '')}/${fullFileName}`;
     this.list = data.list;
     this.text = data.text;
   }
 
   getId() {
-    return this.filePath;
+    return this.id;
   }
 
   getText() {
