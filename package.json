@@ -1,6 +1,6 @@
 {
   "name": "sql-reader-params",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "main": "./dist/sql-reader.cjs.js",
   "module": "./dist/sql-reader.esm.js",
   "description": "",

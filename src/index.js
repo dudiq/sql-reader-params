@@ -16,6 +16,10 @@ function findIncludes(text) {
   while ((result = includesReg.exec(text)) !== null) {
     const keyFull = result[0];
     const keyOut = result[1];
+    if (text[result.index - 1] === ':') {
+      continue;
+    }
+
     if (keyFull && keyOut && !map[keyOut]) {
       map[keyOut] = {
         key: keyFull,
